@@ -11,7 +11,6 @@ builder.Services.AddControllers();
 
 builder.Services.AddTransient<ITransactionsService, TransactionsService>();
 builder.Services.AddTransient<IRatesRepository, RatesRepository>();
-builder.Services.AddTransient<IConvertCurrencyToEuro, ConvertCurrencyToEuro>();
 builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 
 

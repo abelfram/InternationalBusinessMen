@@ -10,12 +10,12 @@ namespace Business.ServiceImplementation
     {
         private readonly IRatesRepository _ratesRepository;
         private readonly ITransactionRepository _transactionRepository;
-        private readonly IConvertCurrencyToEuro _convertToEUR;
-        public TransactionsService(IRatesRepository conversorRepository, ITransactionRepository transactionRepository, IConvertCurrencyToEuro convertToEUR)
+
+        public TransactionsService(IRatesRepository conversorRepository, ITransactionRepository transactionRepository)
         {
             _ratesRepository = conversorRepository;
             _transactionRepository = transactionRepository;
-            _convertToEUR = convertToEUR;
+            
 
         }
         public async Task<List<TransactionDomainEntity>> GetAllTransactions()

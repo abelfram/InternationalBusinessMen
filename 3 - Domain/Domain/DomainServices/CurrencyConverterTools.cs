@@ -45,7 +45,7 @@ namespace Domain.DomainServices
 
                 foreach (var rate in conversionPath)
                 {
-                    convertedAmount *= decimal.Parse(rate.Rate, CultureInfo.InvariantCulture);
+                    convertedAmount *= rate.Rate;
                     transaction.currency = rate.To;
                 }
 

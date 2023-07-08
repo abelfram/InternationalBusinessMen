@@ -27,7 +27,7 @@ namespace Infrastructure.Data.RepositoryImplementation
                 RateDomainEntity entity = new RateDomainEntity();
                 entity.From = transaction.From;
                 entity.To = transaction.To;
-                entity.Rate = Math.Round(decimal.Parse(transaction.Rate, CultureInfo.InvariantCulture), 2);
+                entity.Rate = decimal.Parse(transaction.Rate);
                 rateDomainEntities.Add(entity);
             }
 

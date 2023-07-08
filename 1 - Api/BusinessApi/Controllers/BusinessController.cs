@@ -11,9 +11,9 @@ namespace BusinessApi.Controllers
     [ApiController]
     public class BusinessController : ControllerBase
     {
-        private readonly IListTransactionsService _listTransactions;
+        private readonly ITransactionsService _listTransactions;
 
-        public BusinessController(IListTransactionsService listTransactions)
+        public BusinessController(ITransactionsService listTransactions)
         {
             _listTransactions = listTransactions;
         }
@@ -23,7 +23,7 @@ namespace BusinessApi.Controllers
         [Route("GetAllTransactions")]
         public async Task<List<TransactionDomainEntity>> GetAllTransactions()
         {
-            var transactions = await _listTransactions.ListTransactions();
+            var transactions = await _listTransactions.GetAllTransactions();
             return transactions;
         }
 
@@ -31,7 +31,7 @@ namespace BusinessApi.Controllers
         [Route("GetAllRates")]
         public async Task<List<RateDomainEntity>> GetRates()
         {
-            var transactions = await _listTransactions.ListRates();
+            var transactions = await _listTransactions.GetAllRates();
             return transactions;
         }
 

@@ -9,6 +9,6 @@ namespace Domain.RepositoryContracts
 {
     public interface IRatesRepository
     {
-        public List<RateDomainEntity> rateDomainEntity();
+        public List<RateDomainEntity> GetAll();
     }
 }

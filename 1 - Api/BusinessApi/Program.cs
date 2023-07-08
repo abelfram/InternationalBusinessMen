@@ -9,9 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddTransient<IListTransactionsService, ListTransactionsService>();
+builder.Services.AddTransient<ITransactionsService, TransactionsService>();
 builder.Services.AddTransient<IRatesRepository, RatesRepository>();
-builder.Services.AddTransient<IGetElemetnsBySKURepository, GetElemetnsBySKURepository>();
 builder.Services.AddTransient<IConvertCurrencyToEuro, ConvertCurrencyToEuro>();
 builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 

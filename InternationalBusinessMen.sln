@@ -13,13 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure.Data", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infrastructure", "5 - Infrastructure", "{CF0EB89E-8555-4069-AAFE-25273B50AD70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessApi", "1 - Api\BusinessApi\BusinessApi.csproj", "{D89C140B-226D-4C14-B8C9-022F21EE05E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessApi", "1 - Api\BusinessApi\BusinessApi.csproj", "{D89C140B-226D-4C14-B8C9-022F21EE05E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "2 - Business\Business\Business.csproj", "{68CBA344-7D1D-491A-B3C8-402489BB1A89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "2 - Business\Business\Business.csproj", "{68CBA344-7D1D-491A-B3C8-402489BB1A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "3 - Domain\Domain\Domain.csproj", "{1C9AF5CA-0A56-423C-9B74-ADFA939320EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "3 - Domain\Domain\Domain.csproj", "{1C9AF5CA-0A56-423C-9B74-ADFA939320EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Data", "Infrastructure.Data\Infrastructure.Data.csproj", "{36039F1F-E261-455D-8529-5126E6F33ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Data", "Infrastructure.Data\Infrastructure.Data.csproj", "{36039F1F-E261-455D-8529-5126E6F33ADE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

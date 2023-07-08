@@ -10,6 +10,6 @@ namespace Domain.RepositoryContracts
 {
     public interface IConvertCurrencyToEuro
     {
-        List<TransactionDomainEntity> ConvertCurrencyToEUR(List<TransactionDomainEntity> transactionsBySKU );
+        List<TransactionDomainEntity> ConvertRateToEUR(List<TransactionDomainEntity> transactionsBySKU );
     }
 }

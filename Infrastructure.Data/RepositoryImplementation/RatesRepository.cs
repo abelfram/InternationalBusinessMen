@@ -12,13 +12,13 @@ namespace Infrastructure.Data.RepositoryImplementation
     {
         private const string JsonPath = ".\\JSon\\Currency.Json";
         
-        public List<RateDomainEntity> rateDomainEntity()
+        public List<RateDomainEntity> GetAll()
         {
             string textFromJson = File.ReadAllText(JsonPath);
 
             textFromJson = textFromJson.Replace(".", ",");
 
-            List<RateEntity> deserializedInfoFromJson = JsonSerializer.Deserialize<List<RateEntity>>(textFromJson);
+            List<RateDataEntity> deserializedInfoFromJson = JsonSerializer.Deserialize<List<RateDataEntity>>(textFromJson);
 
             List<RateDomainEntity> rateDomainEntities = new List<RateDomainEntity>();
 

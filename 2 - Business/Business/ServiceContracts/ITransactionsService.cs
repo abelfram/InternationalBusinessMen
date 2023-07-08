@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Business.ServiceContracts
 {
-    public interface IListTransactionsService
+    public interface ITransactionsService
     {
-        public Task<List<TransactionDomainEntity>> ListTransactions();
-        public Task<List<RateDomainEntity>> ListRates();
+        public Task<List<TransactionDomainEntity>> GetAllTransactions();
+        public Task<List<RateDomainEntity>> GetAllRates();
         public Task<BillAgregate> GetElementsBySKU(string sku);
     }
 }

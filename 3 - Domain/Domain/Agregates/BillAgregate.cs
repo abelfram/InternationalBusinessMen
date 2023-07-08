@@ -8,16 +8,12 @@ namespace Domain.Agregates
 
         public decimal TotalAmount { get; set; }
 
-        public decimal GetBillDomainEntity (List<TransactionDomainEntity> TransactionsInEUR)
-        { 
-            decimal totalAmount = 0;
+        public void CalculateBillTotal ()
+        {
+            TotalAmount = 0;
 
-            foreach (var transaction in TransactionsInEUR)
-            {
-                totalAmount += transaction.amount;
-            }
-
-            return totalAmount;
+            TotalAmount = ListOfTransactions.Sum(x => x.amount);
+            
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Domain.DomainEntity;
 using Domain.RepositoryContracts;
+using Infrastructure.Data.DataEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,43 @@ namespace Infrastructure.Data.RepositoryImplementation
     public class TransactionRepository : ITransactionRepository
     {
         private const string JsonPath = ".\\JSon\\Transactions.Json";
-        public List<TransactionDomainEntity> GetTransactions()
+        public List<TransactionDomainEntity> GetAll()
+        {
+            List<TransactionDataEntity> deserializedInfoFromJson = DeserializeJson();
+
+            List<TransactionDomainEntity> result = FromDataEntityToDomainEntity(deserializedInfoFromJson);
+
+            return result;
+        }
+
+        public List<TransactionDomainEntity> GetElementsBySku(string sku)
+        {
+            List<TransactionDataEntity> deserializedInfoFromJson = DeserializeJson();
+            List<TransactionDataEntity> resultDataEntity = deserializedInfoFromJson.Where(transaction => transaction.sku == sku).ToList();
+
+            List<TransactionDomainEntity> result = FromDataEntityToDomainEntity(resultDataEntity);
+
+            return result;
+
+
+        }
+
+        private List<TransactionDataEntity> DeserializeJson()
         {
             string textFromJson = File.ReadAllText(JsonPath);
 
             textFromJson = textFromJson.Replace(".", ",");
 
-            List<TransactionsEntity> deserializedInfoFromJson = JsonSerializer.Deserialize<List<TransactionsEntity>>(textFromJson);
+            List<TransactionDataEntity> deserializedInfoFromJson = JsonSerializer.Deserialize<List<TransactionDataEntity>>(textFromJson);
 
-            List<TransactionDomainEntity> transactionDomainEntities = new List<TransactionDomainEntity>();
+            return deserializedInfoFromJson;
+        }
 
-            foreach (var transaction in deserializedInfoFromJson)
+        private List<TransactionDomainEntity> FromDataEntityToDomainEntity(List<TransactionDataEntity> transactionsDataEntity) 
+        {
+            List<TransactionDomainEntity> transactionDomainEntities = new();
+
+            foreach (var transaction in transactionsDataEntity)
             {
                 TransactionDomainEntity entity = new TransactionDomainEntity();
                 entity.sku = transaction.sku;
@@ -35,5 +62,6 @@ namespace Infrastructure.Data.RepositoryImplementation
 
             return transactionDomainEntities;
         }
+
     }
 }

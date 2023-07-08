@@ -1,6 +1,7 @@
 ﻿using Business.ServiceContracts;
 using Domain.Agregates;
 using Domain.DomainEntity;
+using Domain.DomainServices;
 using Domain.RepositoryContracts;
 
 namespace Business.ServiceImplementation
@@ -25,18 +26,19 @@ namespace Business.ServiceImplementation
 
         public async Task<List<RateDomainEntity>> GetAllRates()
         {
-            List<RateDomainEntity> transactions = _ratesRepository.GetAll();
-            return transactions;
+            List<RateDomainEntity> rates = _ratesRepository.GetAll();
+            return rates;
         }
 
         public async Task<BillAgregate> GetElementsBySKU(string sku)
         {
 
             List<TransactionDomainEntity> transactionsBySKU = _transactionRepository.GetElementsBySku(sku);
+            List<RateDomainEntity> rates = _ratesRepository.GetAll();
+            CurrencyConverterTools currencyConverterTools = new();
+            List<TransactionDomainEntity> transactionsBySKUInEUR = currencyConverterTools.ConvertRateToEUR(transactionsBySKU, rates);
 
-            List<TransactionDomainEntity> transactionsBySKUInEUR = _convertToEUR.ConvertRateToEUR(transactionsBySKU);
-
-            BillAgregate bill = new BillAgregate()
+            BillAgregate bill = new()
             {
                 ListOfTransactions = transactionsBySKUInEUR,
             };

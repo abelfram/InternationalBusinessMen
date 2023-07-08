@@ -1,23 +1,14 @@
 ﻿using Domain.DomainEntity;
-using Domain.RepositoryContracts;
-using Infrastructure.Data.DataEntity;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
-using static Infrastructure.Data.DataEntity.RateDataEntity;
 
-namespace Infrastructure.Data.RepositoryImplementation
+namespace Domain.DomainServices
 {
-    public class ConvertCurrencyToEuro : IConvertCurrencyToEuro
+    public class CurrencyConverterTools
     {
-        private const string ConversionRatesJsonPath = "./Json/Currency.json";
 
-        public List<TransactionDomainEntity> ConvertRateToEUR(List<TransactionDomainEntity> transactionsBySKU)
+        public List<TransactionDomainEntity> ConvertRateToEUR(List<TransactionDomainEntity> transactionsBySKU, List<RateDomainEntity> conversionRates)
         {
-            string jsonText = File.ReadAllText(ConversionRatesJsonPath);
-            var conversionRates = JsonSerializer.Deserialize<List<RateDataEntity>>(jsonText);
+           
 
             var transactionsInEUR = new List<TransactionDomainEntity>();
 
@@ -40,14 +31,14 @@ namespace Infrastructure.Data.RepositoryImplementation
             return transactionsInEUR;
         }
 
-        private TransactionDomainEntity ConvertToEUR(TransactionDomainEntity transaction, List<RateDataEntity> conversionRates)
+        private TransactionDomainEntity ConvertToEUR(TransactionDomainEntity transaction, List<RateDomainEntity> conversionRates)
         {
             if (transaction.currency == "EUR")
             {
                 return transaction;
             }
 
-            var conversionPath = FindConversionPath(transaction.currency, conversionRates, new List<RateDataEntity>());
+            var conversionPath = FindConversionPath(transaction.currency, conversionRates, new List<RateDomainEntity>());
             if (conversionPath != null)
             {
                 decimal convertedAmount = transaction.amount;
@@ -70,7 +61,7 @@ namespace Infrastructure.Data.RepositoryImplementation
             return null;
         }
 
-        private List<RateDataEntity> FindConversionPath(string sourceCurrency, List<RateDataEntity> conversionRates, List<RateDataEntity> currentPath)
+        private List<RateDomainEntity> FindConversionPath(string sourceCurrency, List<RateDomainEntity> conversionRates, List<RateDomainEntity> currentPath)
         {
             if (sourceCurrency == "EUR")
             {
@@ -81,7 +72,7 @@ namespace Infrastructure.Data.RepositoryImplementation
 
             foreach (var rate in validRates)
             {
-                var newPath = new List<RateDataEntity>(currentPath);
+                var newPath = new List<RateDomainEntity>(currentPath);
                 newPath.Add(rate);
 
                 var path = FindConversionPath(rate.To, conversionRates, newPath);
@@ -94,3 +85,4 @@ namespace Infrastructure.Data.RepositoryImplementation
         }
     }
 }
+

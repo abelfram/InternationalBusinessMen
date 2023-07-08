@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="JSon\Currency.Json" />
+    <Content Remove="JSon\Transactions.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="JSon\Transactions.Json" />
+    <None Include="JSon\Currency.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2 - Business\Business\Business.csproj" />
+    <ProjectReference Include="..\..\Infrastructure.Data\Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+</Project>

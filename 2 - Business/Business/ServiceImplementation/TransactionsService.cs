@@ -10,14 +10,14 @@ namespace Business.ServiceImplementation
     {
         private readonly IRatesRepository _ratesRepository;
         private readonly ITransactionRepository _transactionRepository;
+        
 
         public TransactionsService(IRatesRepository conversorRepository, ITransactionRepository transactionRepository)
         {
             _ratesRepository = conversorRepository;
             _transactionRepository = transactionRepository;
-            
-
         }
+
         public async Task<List<TransactionDomainEntity>> GetAllTransactions()
         {
             List<TransactionDomainEntity> transactions = _transactionRepository.GetAll();
